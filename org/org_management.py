@@ -68,11 +68,9 @@ class OrgGenerator:
     def generate_teams(self):
         # overwrites any teams in cloudfoundry.yml that matches a generated team name according to RFC-0005
         # TODO: TOC and WG leads
-        # TODO: enable for all WGs
         for wg in self.working_groups:
             (name, team) = OrgGenerator._generate_wg_teams(wg)
-            if name in ("wg-app-runtime-deployments", "wg-foundational-infrastructure"):
-                self.org_cfg["orgs"]["cloudfoundry"]["teams"][name] = team
+            self.org_cfg["orgs"]["cloudfoundry"]["teams"][name] = team
 
     def write_org_config(self, path: str):
         print(f"Writing org configuration to {path}")
